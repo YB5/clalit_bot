@@ -1,6 +1,6 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-import selenium.webdriver.support.ui as ui
+from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -21,9 +21,16 @@ def run_web(id,year):
     moveonbutten = driver.find_element_by_xpath('//*[@id="ctl00_ctl00_cphBody_bodyContent_ucQuickLogin_btnLogin_lblInnerText"]')
     moveonbutten.click()
 
-    time.sleep(5)
-    ProfessionVisitButton = driver.find_element_by_link_text("לרופאים יועצים").click()
+    time.sleep(1)
+    driver.get('https://e-services.clalit.co.il/OnlineWebQuick/QuickServices/Tamuz/TamuzTransferContentByService.aspx')
+    ProfessionVisitButton = driver.find_element_by_id("ProfessionVisitButton").click()
+    select = Select(driver.find_element_by_name('SelectedSpecializationCode'))
+    select.select_by_value('58')
+    time.sleep(20)
 
-#run_web("311221790","1993")
+
+
+
+run_web("311221790","1993")
 
 

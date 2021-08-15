@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-def run_web(id,year):
+def run_web(id, year, specialty):
     driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.get('https://e-services.clalit.co.il/onlinewebquick/nvgq/tamuz/he-il')
 
@@ -23,14 +23,28 @@ def run_web(id,year):
 
     time.sleep(1)
     driver.get('https://e-services.clalit.co.il/OnlineWebQuick/QuickServices/Tamuz/TamuzTransferContentByService.aspx')
-    ProfessionVisitButton = driver.find_element_by_id("ProfessionVisitButton").click()
+    driver.find_element_by_id("ProfessionVisitButton").click()
     select = Select(driver.find_element_by_name('SelectedSpecializationCode'))
-    select.select_by_value('58')
+    switcher = {
+        "orthopedics": "58",
+        "otolaryngology": "62",
+        "breast surgeon": "501",
+        "women": "63",
+        "skin": "31",
+        "eyes": "61"
+    }
+    specialty_number = switcher.get(specialty, "0")
+    select.select_by_value(f'{specialty_number}')
+    driver.find_element_by_xpath('//*[@id="professionSection"]/div[2]/div[1]/table/tbody/tr[4]/td[3]/input').click()
+    html_list = driver.find_element_by_xpath('//*[@id="diariesList"]/li[1]')
+        #.find_element_by_class_name().find_element_by_id("diariesList")
+    #item = html_list.find_elements_by_tag_name("li")[0]
+    print(html_list.text)
+    # f = driver.find_element_by_xpath('//*[@id="diariesList"]/li[1]/div[1]/div[1]/a')
+    # print(f.text)
     time.sleep(20)
 
 
-
-
-run_web("311221790","1993")
+run_web("311221790", "1993", "skin")
 
 

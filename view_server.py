@@ -34,6 +34,11 @@ def add_type_of_doctors(sender_name, msg_text):
 def all_is_fill(sender_name, msg_text):
     return "We will now look for a meeting for the next two weeks and will be updated soon."
 
+
+def find_appointment():
+    rtn = server_controller.find_appointment()
+    return "The next empty appointment: \n"+rtn[0]+"\n"+rtn[1]
+
 # def get_msg():
 #     sender_name = " "
 #     msg_text = input()

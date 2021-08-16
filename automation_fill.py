@@ -4,7 +4,6 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 import time
 
 
@@ -36,14 +35,30 @@ def run_web(id, year, specialty):
     specialty_number = switcher.get(specialty, "0")
     select.select_by_value(f'{specialty_number}')
     driver.find_element_by_xpath('//*[@id="professionSection"]/div[2]/div[1]/table/tbody/tr[4]/td[3]/input').click()
+    time.sleep(1)
+
+    try:
+        driver.find_element_by_xpath('//*[@id="CloseButton"]').click()
+    except:
+        pass
+
+    #driver.find_element_by_xpath('//*[@id="diariesList"]/li[1]/div[3]/div[2]/div/a[1]').click()
+    # print(driver.find_element_by_xpath('//*[@id="diariesList"]/li[2]/div[1]/div[2]/div[3]/span').text)
+    # print(driver.find_element_by_xpath('//*[@id="diariesList"]/li[1]/div[1]/div[3]/div[1]/a').text)
+    return_date = driver.find_element_by_xpath('//*[@id="diariesList"]/li[2]/div[1]/div[2]/div[3]/span').text
+    return_location = driver.find_element_by_xpath('//*[@id="diariesList"]/li[1]/div[1]/div[3]/div[1]/a').text
+    return return_date,return_location
+
+
+
     # html_list = driver.find_element_by_id("diariesList")
     # items = html_list.find_elements_by_tag_name("li")[0]
     # print(item.text)
     # f = driver.find_element_by_xpath('//*[@id="diariesList"]/li[1]/div[1]/div[1]/a')
     # print(f.text)
-    time.sleep(20)
+    #time.sleep()
 
 
-run_web("311221790", "1993", "skin")
+#run_web("311221790", "1993", "women")
 
 

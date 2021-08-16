@@ -1,5 +1,6 @@
 from datetime import date
 import data_server
+import automation_fill
 
 
 def get_connection_status():
@@ -37,6 +38,12 @@ def get_year(year):
 
 def set_start_message():
     set_connection_status(data_server.START_MESSAGE)
+
+
+def find_appointment():
+    #todo date check
+    return automation_fill.run_web(data_server.ID,data_server.BirthYear,data_server.Specialty)
+
 
 
 def add_specialty(msg_text):

@@ -30,6 +30,11 @@ def msg_handler(pm):
     else:
         rep_str = switcher.get(connection_status, "I do not understand you.")(sender_name, msg_text)
     sent_msg = bot.send_message(pm.chat.id, rep_str)
+    if view_server.get_connection_status() == 4:
+        bot.send_message(pm.chat.id,view_server.find_appointment())
+
+bot.polling()
+
     #bot.send_message(pm.chat.id, sent_msg)
     #bot.register_next_step_handler(sent_msg, name_handler)  # Next message will call the name_handler function
 
@@ -48,6 +53,3 @@ def msg_handler(pm):
 #     #automation_fill.run_web(id,year)
 
 
-
-
-bot.polling()

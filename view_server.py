@@ -16,7 +16,7 @@ def add_id(sender_name, msg_text):
 
 def start_message():
     server_controller.set_start_message()
-    return "Enter Your ID number first please."
+    return "hey! \n what your id? "
 
 
 def add_birth_year(sender_name, msg_text):
@@ -33,3 +33,20 @@ def add_type_of_doctors(sender_name, msg_text):
 
 def all_is_fill(sender_name, msg_text):
     return "We will now look for a meeting for the next two weeks and will be updated soon."
+
+# def get_msg():
+#     sender_name = " "
+#     msg_text = input()
+#     switcher = {
+#         1: add_id,
+#         2: add_birth_year,
+#         3: add_type_of_doctors,
+#         4: all_is_fill
+#     }
+#     rep_str = switcher.get(get_connection_status(), "I do not understand you.")(sender_name, msg_text)
+#     print(rep_str)
+#
+# start_message()
+# while get_connection_status() != 4:
+#     get_msg()
+

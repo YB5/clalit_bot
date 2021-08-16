@@ -36,10 +36,9 @@ def run_web(id, year, specialty):
     specialty_number = switcher.get(specialty, "0")
     select.select_by_value(f'{specialty_number}')
     driver.find_element_by_xpath('//*[@id="professionSection"]/div[2]/div[1]/table/tbody/tr[4]/td[3]/input').click()
-    html_list = driver.find_element_by_xpath('//*[@id="diariesList"]/li[1]')
-        #.find_element_by_class_name().find_element_by_id("diariesList")
-    #item = html_list.find_elements_by_tag_name("li")[0]
-    print(html_list.text)
+    # html_list = driver.find_element_by_id("diariesList")
+    # items = html_list.find_elements_by_tag_name("li")[0]
+    # print(item.text)
     # f = driver.find_element_by_xpath('//*[@id="diariesList"]/li[1]/div[1]/div[1]/a')
     # print(f.text)
     time.sleep(20)
